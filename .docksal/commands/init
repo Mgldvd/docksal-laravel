@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+source .docksal/utils/header
+[ -f .env ] && source .env
+
+fin start
+echo
+echo -e "${C_INF}▎ ${RS}${C_WAR} 🔗 URL: ${RS}"
+echo -e "${C_INF}▎ ${RS}"
+echo -e "${C_INF}▎     ${RS}http://$VIRTUAL_HOST:$DOCKSAL_VHOST_PROXY_PORT_HTTP${RS}"
+echo -e "${C_INF}▎"

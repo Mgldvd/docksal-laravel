@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+source .docksal/utils/header
+[ -f .env ] && source .env
+
+echo -e "${C_INF}▎  ${C_WAR}Warning${NC}: This action will delete the existing project and start Laravel installation."
+echo -e "${C_INF}▎  ${RS}Note: You can hit ENTER to cancel or using 'Ctrl + C'"
+read -p "$(echo -e "${C_INF}▎  ${RS}Do you want to proceed? (Type '${C_INF}yes${RS}' to confirm): ${NC}")" response
+
+
+if [ "$response" = "yes" ]; then
+    rm -r "$PROJECT_ROOT/$LARAVEL_ROOT" 2>/dev/null
+
+    # ::::::: Reset containers
+    fin reset -f
+
+    # ::::::: Require installer
+    fin exec composer global require "laravel/installer"
+
+    # ::::::: Install laravel
+    cd "$PROJECT_ROOT"
+    fin exec composer create-project --prefer-dist laravel/laravel "$LARAVEL_ROOT"
+
+    echo "Copying Database settings..."
+    fin exec sed -i "s/^\(DB_HOST=\).*/\1${DB_HOST}/g" "${LARAVEL_ROOT}/.env"
+    fin exec sed -i "s/^\(DB_DATABASE=\).*/\1${MYSQL_DATABASE}/g" "${LARAVEL_ROOT}/.env"
+    fin exec sed -i "s/^\(DB_USERNAME=\).*/\1${MYSQL_USER}/g" "${LARAVEL_ROOT}/.env"
+    fin exec sed -i "s/^\(DB_PASSWORD=\).*/\1${MYSQL_PASSWORD}/g" "${LARAVEL_ROOT}/.env"
+    fin exec sed -i '/^docroot$/d' .gitignore
+
+    rm -rf .git
+
+    echo -e "\n${C_INF}▎  ${RS}Installation complete.${RS}\n"
+    fin url
+
+else
+    echo "Operation cancelled. Exiting..."
+    exit 0
+fi
+

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+## Run Laravel Artisan Commands
+##
+## Artisan is the command-line interface included with Laravel.
+## It provides a number of helpful commands that can assist you while you build your application.
+## To view a list of all available Artisan commands, you may use the list command:
+##   fin artisan list
+##
+## Usage:
+##   art [args]     Run artisan see https://laravel.com/docs/master/artisan
+
+source .docksal/utils/header
+[ -f .env ] && source .env
+
+cd "$(dirname "$PROJECT_ROOT/$DOCROOT")"
+fin exec php artisan "$@"

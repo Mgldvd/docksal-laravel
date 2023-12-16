@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+## Run NPM Commands
+##
+## Usage: npm [args]
+
+source .docksal/utils/header
+[ -f .env ] && source .env
+
+cd "$(dirname "$PROJECT_ROOT/$DOCROOT")"
+fin exec npm "$@"
