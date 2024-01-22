@@ -19,7 +19,7 @@
 ## 📍 Quick start
 
 ```bash
-git clone https://gitlab.com/mgldvd/docksal-laravel.git .
+git clone https://github.com/Mgldvd/docksal-laravel.git .
 ```
 
 ```bash
