@@ -23,12 +23,6 @@ git clone https://github.com/Mgldvd/docksal-laravel.git .
 ```
 
 ```bash
-fin start/init
-```
-
-## 📍 Run:
-
-```bash
 fin init
 ```
 

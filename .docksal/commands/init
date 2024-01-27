@@ -1,11 +1,26 @@
 #!/usr/bin/env bash
 
 source .docksal/utils/header
-[ -f .env ] && source .env
+source .docksal/utils/dropdown
 
-fin start
-echo
-echo -e "${C_INF}▎ ${RS}${C_WAR} 🔗 URL: ${RS}"
-echo -e "${C_INF}▎ ${RS}"
-echo -e "${C_INF}▎     ${RS}http://$VIRTUAL_HOST:$DOCKSAL_VHOST_PROXY_PORT_HTTP${RS}"
-echo -e "${C_INF}▎"
+selections=(
+    "run"
+    "init"
+    "exit"
+)
+
+choose_from_menu " Please make a choice:" selected_choice "${selections[@]}"
+echo "Selected choice: $selected_choice"
+
+
+case $selected_choice in
+    "run")
+        fin start
+        fin url
+        ;;
+    "init")
+        source .docksal/utils/init
+        ;;
+    "exit")
+        ;;
+esac
