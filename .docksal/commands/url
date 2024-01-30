@@ -4,17 +4,17 @@ source .docksal/utils/header
 [ -f .env ] && source .env
 
 echo
-echo -e "${C_INF}▎ ${RS}${C_WAR} 🔗 IDE: ${RS}"
-echo -e "${C_INF}▎ ${RS}"
-echo -e "${C_INF}▎     ${RS}http://ide-$VIRTUAL_HOST:$DOCKSAL_VHOST_PROXY_PORT_HTTP${RS}"
-echo -e "${C_INF}▎"
+echo -e "${C_INF}▍ ${RS}${C_WAR} 🔗 IDE: ${RS}"
+echo -e "${C_INF}▍ ${RS}"
+echo -e "${C_INF}▍     ${RS}http://ide-$VIRTUAL_HOST:$DOCKSAL_VHOST_PROXY_PORT_HTTP${RS}"
+echo -e "${C_INF}▍"
 echo
-echo -e "${C_INF}▎ ${RS}${C_WAR} 🔗 PhpMyAdmin: ${RS}"
-echo -e "${C_INF}▎ ${RS}"
-echo -e "${C_INF}▎     ${RS}http://pma-$VIRTUAL_HOST:$DOCKSAL_VHOST_PROXY_PORT_HTTP${RS}"
-echo -e "${C_INF}▎"
+echo -e "${C_INF}▍ ${RS}${C_WAR} 🔗 PhpMyAdmin: ${RS}"
+echo -e "${C_INF}▍ ${RS}"
+echo -e "${C_INF}▍     ${RS}http://pma-$VIRTUAL_HOST:$DOCKSAL_VHOST_PROXY_PORT_HTTP${RS}"
+echo -e "${C_INF}▍"
 echo
-echo -e "${C_INF}▎ ${RS}${C_WAR} 🔗 Project: ${RS}"
-echo -e "${C_INF}▎ ${RS}"
-echo -e "${C_INF}▎     ${RS}http://$VIRTUAL_HOST:$DOCKSAL_VHOST_PROXY_PORT_HTTP${RS}"
-echo -e "${C_INF}▎"
+echo -e "${C_PRI}▍ ${RS}${C_WAR} 🔗 Project: ${RS}"
+echo -e "${C_PRI}▍ ${RS}"
+echo -e "${C_PRI}▍     ${RS}http://$VIRTUAL_HOST:$DOCKSAL_VHOST_PROXY_PORT_HTTP${RS}"
+echo -e "${C_PRI}▍"
