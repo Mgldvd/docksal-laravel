@@ -16,14 +16,16 @@ if [ "$response" = "yes" ]; then
 
     # ::::::: Install laravel
     cd "$PROJECT_ROOT"
-    fin exec composer create-project --prefer-dist laravel/laravel "$LARAVEL_ROOT"
+    fin exec composer create-project --prefer-dist laravel/laravel ./.tmp
+
+    mv -f ./.tmp/{.,}* ./
+    rm -rf ./.tmp
 
     echo "Copying Database settings..."
     fin exec sed -i "s/^\(DB_HOST=\).*/\1${DB_HOST}/g" "${LARAVEL_ROOT}/.env"
     fin exec sed -i "s/^\(DB_DATABASE=\).*/\1${MYSQL_DATABASE}/g" "${LARAVEL_ROOT}/.env"
     fin exec sed -i "s/^\(DB_USERNAME=\).*/\1${MYSQL_USER}/g" "${LARAVEL_ROOT}/.env"
     fin exec sed -i "s/^\(DB_PASSWORD=\).*/\1${MYSQL_PASSWORD}/g" "${LARAVEL_ROOT}/.env"
-    fin exec sed -i '/^docroot$/d' .gitignore
 
     rm -rf .git
 

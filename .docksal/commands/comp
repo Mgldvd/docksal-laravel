@@ -9,5 +9,5 @@
 source .docksal/utils/header
 [ -f .env ] && source .env
 
-cd docroot/
+cd ./
 composer "$@"
