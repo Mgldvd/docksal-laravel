@@ -22,12 +22,18 @@ if [ "$response" = "yes" ]; then
     rm -rf ./.tmp
 
     echo "Copying Database settings..."
-    fin exec sed -i "s/^\(DB_HOST=\).*/\1${DB_HOST}/g" "${LARAVEL_ROOT}/.env"
-    fin exec sed -i "s/^\(DB_DATABASE=\).*/\1${MYSQL_DATABASE}/g" "${LARAVEL_ROOT}/.env"
-    fin exec sed -i "s/^\(DB_USERNAME=\).*/\1${MYSQL_USER}/g" "${LARAVEL_ROOT}/.env"
-    fin exec sed -i "s/^\(DB_PASSWORD=\).*/\1${MYSQL_PASSWORD}/g" "${LARAVEL_ROOT}/.env"
+    fin exec sed -i "s/^\(# DB_HOST=\).*/\1${DB_HOST}/g" "${LARAVEL_ROOT}/.env"
+    fin exec sed -i "s/^\(# DB_DATABASE=\).*/\1${MYSQL_DATABASE}/g" "${LARAVEL_ROOT}/.env"
+    fin exec sed -i "s/^\(# DB_USERNAME=\).*/\1${MYSQL_USER}/g" "${LARAVEL_ROOT}/.env"
+    fin exec sed -i "s/^\(# DB_PASSWORD=\).*/\1${MYSQL_PASSWORD}/g" "${LARAVEL_ROOT}/.env"
+
+    fin exec sed -i "s/DB_CONNECTION=sqlite/DB_CONNECTION=mysql/" "${LARAVEL_ROOT}/.env"
+    fin exec sed -i -e "s/^# //g" "${LARAVEL_ROOT}/.env"
 
     rm -rf .git
+
+    echo -e "\n${C_INF}▎  ${RS}Run migration.${RS}\n"
+    fin artisan migrate
 
     echo -e "\n${C_INF}▎  ${RS}Installation complete.${RS}\n"
     fin url
